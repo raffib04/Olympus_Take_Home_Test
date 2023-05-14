@@ -42,7 +42,10 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         paddingHorizontal: 10,
         paddingVertical: 5,
-        fontSize: 18,
+        fontSize: 14,
+        width: 60,
+        height: 40,
+        justifyContent: "center",
     },
     reps: {
         marginRight: 10,
@@ -53,7 +56,9 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         paddingHorizontal: 10,
         paddingVertical: 5,
-        fontSize: 18,
+        fontSize: 14,
+        width: 45,
+        height: 40,
     },
     rpe: {},
     weightRPE: {
@@ -63,6 +68,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 5,
         fontSize: 18,
+        width: 35,
+        height: 40,
     },
     tag: {},
 });
