@@ -8,6 +8,7 @@ import {
 import React from "react";
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
+import UserSet from "../components/userSet";
 
 const HomeScreen = () => {
     const navigation = useNavigation();
@@ -33,6 +34,10 @@ const HomeScreen = () => {
                 color='#E6C466'
                 style={styles.exerciseInput}
             />
+            <View style={styles.userSet}>
+                <UserSet />
+                <UserSet />
+            </View>
             <TouchableOpacity style={styles.button} onPress={handleSignOut}>
                 <Text style={styles.buttonText}>Signout</Text>
             </TouchableOpacity>
@@ -82,5 +87,9 @@ const styles = StyleSheet.create({
         position: "absolute", // Add position absolute to allow bottom and left position
         bottom: "5%", // Set bottom position
         left: "60%", // Set left position
+    },
+    userSet: {
+        marginTop: "30%",
+        marginLeft: "10%",
     },
 });
