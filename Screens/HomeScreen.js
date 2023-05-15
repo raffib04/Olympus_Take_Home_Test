@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         position: "absolute", // Add position absolute to allow bottom and left position
         bottom: "84%", // Set bottom position
         left: "6%", // Set left position
-        width: "80%",
+        width: "85%",
         height: "5%",
     },
     exerciseHeader: {
