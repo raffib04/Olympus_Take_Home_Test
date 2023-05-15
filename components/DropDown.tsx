@@ -60,11 +60,11 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
                         width: 2,
                         height: 15,
                         marginTop: 5,
-                        borderRadius: 100,
+                        borderRadius: 10,
                     },
                 ]}
             />
-            <Text style={{ color: "#8D8D9C", textAlign: "center", flex: 1 }}>
+            <Text style={{ color: "#8D8D9C", textAlign: "center" }}>
                 {item.label}
             </Text>
         </TouchableOpacity>
@@ -119,6 +119,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
                     type='font-awesome'
                     name={visible ? "chevron-down" : "chevron-left"}
                     size={12}
+                    color='#8D8D9C'
                 />
             </TouchableOpacity>
             {renderDropdown()}
@@ -130,18 +131,22 @@ const styles = StyleSheet.create({
     button: {
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: "#efefef",
-        height: 50,
+        backgroundColor: "#232329",
+        height: 45,
         zIndex: 1,
+        borderRadius: 10,
     },
     buttonText: {
         flex: 1,
         textAlign: "center",
+        color: "#8D8D9C",
     },
     icon: {
         marginRight: 10,
         fontSize: 16,
+        color: "#8D8D9C",
     },
+
     dropdown: {
         position: "absolute",
         backgroundColor: "#232329",

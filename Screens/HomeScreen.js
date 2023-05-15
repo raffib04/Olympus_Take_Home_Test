@@ -4,6 +4,7 @@ import {
     TextInput,
     TouchableOpacity,
     View,
+    ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import { auth } from "../firebase";
@@ -27,12 +28,17 @@ const HomeScreen = () => {
         setSets([...sets, <UserSet key={sets.length} />]);
     };
 
+    const handleRemoveSet = () => {
+        const newSets = [...sets];
+        newSets.pop();
+        setSets(newSets);
+    };
+
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.greetingText}>
                 Hi, {auth.currentUser?.displayName}
             </Text>
-
             <TextInput
                 placeholder='Exercise'
                 placeholderTextColor='#E6C466'
@@ -43,30 +49,37 @@ const HomeScreen = () => {
             <TouchableOpacity style={styles.addButton} onPress={handleAddSet}>
                 <Text style={styles.addButtonText}>+ Add Set</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.removeButton}
+                onPress={handleRemoveSet}
+            >
+                <Text style={styles.removeButtonText}>- Remove Set</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={handleSignOut}>
                 <Text style={styles.buttonText}>Signout</Text>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     );
 };
 
 export default HomeScreen;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "flex-start",
         alignItems: "flex-start",
-        margin: 20,
+        backgroundColor: "#19191C",
     },
     button: {
         backgroundColor: "black",
         width: "40%",
-        padding: 15,
+        padding: 10,
         borderRadius: 20,
         alignItems: "center",
         position: "absolute",
         bottom: "90%",
-        right: 20,
+        right: "5%",
     },
     buttonText: {
         color: "#E6C466",
@@ -74,15 +87,16 @@ const styles = StyleSheet.create({
         fontWeight: "700",
     },
     greetingText: {
-        fontSize: 20,
-        fontWeight: "700",
-        marginTop: 40,
-        marginLeft: 10,
+        fontSize: 25,
+        fontWeight: "800",
+        marginTop: "15%",
+        marginLeft: "10%",
+        color: "white",
     },
     exerciseInput: {
         backgroundColor: "black",
         position: "absolute",
-        bottom: "84%",
+        bottom: "80%",
         left: "6%",
         width: "85%",
         height: "5%",
@@ -93,7 +107,7 @@ const styles = StyleSheet.create({
         left: "60%",
     },
     userSet: {
-        marginTop: "30%",
+        marginTop: "28%",
         marginLeft: "10%",
     },
     addButton: {
@@ -108,6 +122,21 @@ const styles = StyleSheet.create({
     },
     addButtonText: {
         color: "black",
+        fontSize: 15,
+        fontWeight: "700",
+    },
+    removeButton: {
+        backgroundColor: "#FF6B6B",
+        width: "80%",
+        padding: "1%",
+        borderRadius: 20,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: "1%",
+        marginLeft: "10%",
+    },
+    removeButtonText: {
+        color: "white",
         fontSize: 15,
         fontWeight: "700",
     },
