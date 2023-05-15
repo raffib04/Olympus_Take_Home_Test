@@ -31,8 +31,8 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
 
     const openDropdown = (): void => {
         DropdownButton.current?.measureInWindow((x, y, width, height) => {
-            setDropdownTop(y + height);
-            setDropdownLeft(x);
+            setDropdownTop(y + height - 8);
+            setDropdownLeft(x + 7);
         });
         setVisible(true);
     };
@@ -47,11 +47,36 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
         setVisible(false);
     };
 
-    const renderItem = ({ item }): ReactElement<any, any> => (
+    const renderItem = ({ item, index }): ReactElement<any, any> => (
         <TouchableOpacity style={styles.item} onPress={() => onItemPress(item)}>
-            <Text>{item.label}</Text>
+            <View
+                style={[
+                    styles.colorLine,
+                    {
+                        backgroundColor: COLORS[index],
+                        marginLeft: 10,
+                        width: 2,
+                        height: 15,
+                        marginTop: 5,
+                        borderRadius: 100,
+                    },
+                ]}
+            />
+            <Text style={{ color: "#8D8D9C", textAlign: "center", flex: 1 }}>
+                {item.label}
+            </Text>
         </TouchableOpacity>
     );
+
+    const COLORS = [
+        "#FF6565",
+        "#FFA34E",
+        "#B5E191",
+        "#54BE98",
+        "#4180CA",
+        "#9B61E4",
+        "#D05ECC",
+    ];
 
     const renderDropdown = (): ReactElement<any, any> => {
         return (
@@ -70,7 +95,6 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
                             data={data}
                             renderItem={renderItem}
                             keyExtractor={(item, index) => index.toString()}
-                            style={styles.list}
                         />
                     </View>
                 </TouchableOpacity>
@@ -118,12 +142,15 @@ const styles = StyleSheet.create({
     },
     dropdown: {
         position: "absolute",
-        backgroundColor: "#fff",
-        width: "28%",
+        backgroundColor: "#232329",
+        width: "27%",
         shadowColor: "#000000",
         shadowRadius: 4,
-        shadowOffset: { height: 4, width: 0 },
+        shadowOffset: { height: 4, width: -4 },
         shadowOpacity: 0.5,
+        paddingBottom: 10,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
     },
     overlay: {
         width: "100%",
@@ -131,10 +158,16 @@ const styles = StyleSheet.create({
     },
     item: {
         paddingHorizontal: 2,
-        paddingLeft: 15,
-        paddingVertical: 6,
+        paddingLeft: 14,
+        paddingVertical: 3.5,
     },
-    list: {},
+    colorLine: {
+        position: "absolute",
+        left: 0,
+        top: 0,
+        bottom: 0,
+        width: 5,
+    },
 });
 
 export default Dropdown;
