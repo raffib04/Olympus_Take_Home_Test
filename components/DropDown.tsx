@@ -34,7 +34,9 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
             setDropdownTop(y + height - 8);
             setDropdownLeft(x + 7);
         });
-        setVisible(true);
+        setTimeout(() => {
+            setVisible(true);
+        }, 1);
     };
 
     const closeDropdown = (): void => {
