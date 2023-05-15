@@ -30,9 +30,11 @@ const UserSet = (props) => {
                         ]}
                         placeholderTextColor='#8D8D9C'
                         maxLength={4}
+                        placeholderText='Weight'
                     >
                         {props.text}
                     </TextInput>
+                    <View style={styles.textInputLine} />
                 </View>
                 <View style={styles.reps}>
                     <TextInput
@@ -45,6 +47,7 @@ const UserSet = (props) => {
                     >
                         {props.text}
                     </TextInput>
+                    <View style={styles.textInputLine} />
                 </View>
                 <View style={styles.rpe}>
                     <TextInput
@@ -57,11 +60,12 @@ const UserSet = (props) => {
                     >
                         {props.text}
                     </TextInput>
+                    <View style={styles.textInputLine} />
                 </View>
             </View>
             <View style={styles.tag}>
                 <Dropdown
-                    label={"Tag"}
+                    label={"None"}
                     data={data}
                     onSelect={handleTagSelect}
                 />
@@ -75,26 +79,23 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        marginVertical: 5,
+        marginVertical: 3,
     },
     row: {
         flexDirection: "row",
+        marginLeft: 10,
     },
     weight: {
         marginRight: 10,
         backgroundColor: "#232329",
         borderRadius: 5,
-        paddingBottom: 3,
+        paddingBottom: 8,
     },
     weightText: {
-        borderColor: "#ccc",
-        paddingHorizontal: 10,
-        paddingVertical: 5,
         fontSize: 14,
         width: 60,
-        height: 40,
+        height: 38,
         justifyContent: "center",
-        borderBottomWidth: 1,
     },
     reps: {
         marginRight: 10,
@@ -103,25 +104,28 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         fontSize: 14,
         width: 45,
-        height: 40,
+        height: 38,
         backgroundColor: "#232329",
-        borderColor: "#ccc",
-        borderBottomWidth: 1,
     },
-    rpe: {},
+    rpe: {
+        marginRight: -10,
+    },
     weightRPE: {
-        paddingHorizontal: 10,
-        paddingVertical: 5,
+        borderRadius: 5,
         fontSize: 14,
         width: 35,
-        height: 40,
+        height: 38,
         backgroundColor: "#232329",
-        borderRadius: 5,
-        borderColor: "#ccc",
-        borderBottomWidth: 1,
     },
     tag: {
         width: "40%",
+    },
+    textInputLine: {
+        backgroundColor: "#8D8D9C",
+        height: 1.3,
+        marginTop: -8,
+        marginLeft: "13%",
+        width: "70%",
     },
 });
 

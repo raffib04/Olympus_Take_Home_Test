@@ -31,7 +31,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
 
     const openDropdown = (): void => {
         DropdownButton.current?.measureInWindow((x, y, width, height) => {
-            setDropdownTop(y + height - 8);
+            setDropdownTop(y + height - 6);
             setDropdownLeft(x + 7);
         });
         setTimeout(() => {
@@ -58,8 +58,8 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
                         backgroundColor: COLORS[index],
                         marginLeft: 10,
                         width: 2,
-                        height: 15,
-                        marginTop: 5,
+                        height: "80%",
+                        marginTop: "4%",
                         borderRadius: 10,
                     },
                 ]}
@@ -111,6 +111,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
                 style={styles.button}
                 onPress={toggleDropdown}
             >
+                <View style={styles.buttonLine} />
                 <Text style={styles.buttonText}>
                     {(selected && selected.label) || label}
                 </Text>
@@ -132,25 +133,35 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: "#232329",
-        height: 45,
+        height: 38,
         zIndex: 1,
-        borderRadius: 10,
+        borderRadius: 5,
+        right: 10,
     },
     buttonText: {
         flex: 1,
         textAlign: "center",
         color: "#8D8D9C",
     },
+    buttonLine: {
+        backgroundColor: "#8D8D9C",
+        height: 1.3,
+        position: "absolute",
+        bottom: 1,
+        width: "90%",
+        marginBottom: 6,
+        marginLeft: "6%",
+    },
+
     icon: {
         marginRight: 10,
-        fontSize: 16,
         color: "#8D8D9C",
     },
 
     dropdown: {
         position: "absolute",
         backgroundColor: "#232329",
-        width: "27%",
+        width: "28%",
         shadowColor: "#000000",
         shadowRadius: 4,
         shadowOffset: { height: 4, width: -4 },
@@ -161,7 +172,7 @@ const styles = StyleSheet.create({
     },
     overlay: {
         width: "100%",
-        height: "100%",
+        height: "80%",
     },
     item: {
         paddingHorizontal: 2,
@@ -173,7 +184,7 @@ const styles = StyleSheet.create({
         left: 0,
         top: 0,
         bottom: 0,
-        width: 5,
+        width: 100,
     },
 });
 

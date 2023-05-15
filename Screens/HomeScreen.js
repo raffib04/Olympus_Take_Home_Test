@@ -36,6 +36,24 @@ const HomeScreen = () => {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
+            <Text
+                style={[
+                    styles.exerciseHeader,
+                    { left: "8%" },
+                    { bottom: "85%" },
+                    { color: "#8D8D9C" },
+                    { fontWeight: "500" },
+                ]}
+            >
+                Exercise Name
+            </Text>
+            <Text style={[styles.exerciseHeader, { left: "13.5%" }]}>
+                WEIGHT
+            </Text>
+            <Text style={[styles.exerciseHeader, { left: "31.5%" }]}>REPS</Text>
+            <Text style={[styles.exerciseHeader, { left: "46%" }]}>RPE</Text>
+            <Text style={[styles.exerciseHeader, { left: "65%" }]}>TAG</Text>
+
             <Text style={styles.greetingText}>
                 Hi, {auth.currentUser?.displayName}
             </Text>
@@ -78,7 +96,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: "center",
         position: "absolute",
-        bottom: "90%",
+        bottom: "88.9%",
         right: "5%",
     },
     buttonText: {
@@ -94,18 +112,28 @@ const styles = StyleSheet.create({
         color: "white",
     },
     exerciseInput: {
-        backgroundColor: "black",
+        backgroundColor: "#19191C",
         position: "absolute",
         bottom: "80%",
         left: "6%",
-        width: "85%",
-        height: "5%",
+        width: "80%",
+        height: "4%",
+        marginLeft: "2.5%",
+        borderBottomColor: "#8D8D9C",
+        borderBottomWidth: 2,
+        fontSize: 17,
+        fontWeight: "400",
     },
     exerciseHeader: {
         position: "absolute",
-        bottom: "5%",
-        left: "60%",
+        bottom: "76.8%",
+        left: "10.7%",
+        color: "white",
+        zIndex: 1,
+        fontWeight: "800",
+        fontSize: 12,
     },
+
     userSet: {
         marginTop: "28%",
         marginLeft: "10%",
