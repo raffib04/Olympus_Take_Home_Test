@@ -23,6 +23,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
         value: string;
     } | null>(null);
     const [dropdownTop, setDropdownTop] = useState(0);
+    const [dropdownLeft, setDropdownLeft] = useState(0);
 
     const toggleDropdown = (): void => {
         visible ? setVisible(false) : openDropdown();
@@ -31,13 +32,15 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
     const openDropdown = (): void => {
         DropdownButton.current?.measureInWindow((x, y, width, height) => {
             setDropdownTop(y + height);
+            setDropdownLeft(x);
         });
         setVisible(true);
     };
+
     const onItemPress = (item): void => {
         setSelected(item);
-        setVisible(false); // close the dropdown
         onSelect(item);
+        setVisible(false);
     };
 
     const renderItem = ({ item }): ReactElement<any, any> => (
@@ -51,9 +54,14 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
             <Modal visible={visible} transparent animationType='none'>
                 <TouchableOpacity
                     style={styles.overlay}
-                    onPress={() => setVisible(false)} // fix here
+                    onPress={() => setVisible(true)}
                 >
-                    <View style={[styles.dropdown, { top: dropdownTop }]}>
+                    <View
+                        style={[
+                            styles.dropdown,
+                            { top: dropdownTop, left: dropdownLeft },
+                        ]}
+                    >
                         <FlatList
                             data={data}
                             renderItem={renderItem}
@@ -79,6 +87,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
                     style={styles.icon}
                     type='font-awesome'
                     name='chevron-down'
+                    size={12}
                 />
             </TouchableOpacity>
             {renderDropdown()}
