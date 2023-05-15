@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#19191C",
     },
     button: {
-        backgroundColor: "black",
-        width: "40%",
+        backgroundColor: "#232329",
+        width: "30%",
         padding: 10,
         borderRadius: 20,
         alignItems: "center",
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: "800",
         marginTop: "15%",
-        marginLeft: "10%",
+        marginLeft: "8%",
         color: "white",
     },
     exerciseInput: {
