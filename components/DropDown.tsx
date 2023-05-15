@@ -37,6 +37,10 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
         setVisible(true);
     };
 
+    const closeDropdown = (): void => {
+        setVisible(false);
+    };
+
     const onItemPress = (item): void => {
         setSelected(item);
         onSelect(item);
@@ -54,7 +58,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
             <Modal visible={visible} transparent animationType='none'>
                 <TouchableOpacity
                     style={styles.overlay}
-                    onPress={() => setVisible(true)}
+                    onPress={() => closeDropdown()}
                 >
                     <View
                         style={[
@@ -66,6 +70,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
                             data={data}
                             renderItem={renderItem}
                             keyExtractor={(item, index) => index.toString()}
+                            style={styles.list}
                         />
                     </View>
                 </TouchableOpacity>
@@ -86,7 +91,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
                 <Icon
                     style={styles.icon}
                     type='font-awesome'
-                    name='chevron-down'
+                    name={visible ? "chevron-down" : "chevron-left"}
                     size={12}
                 />
             </TouchableOpacity>
@@ -109,11 +114,12 @@ const styles = StyleSheet.create({
     },
     icon: {
         marginRight: 10,
+        fontSize: 16,
     },
     dropdown: {
         position: "absolute",
         backgroundColor: "#fff",
-        width: "30%",
+        width: "28%",
         shadowColor: "#000000",
         shadowRadius: 4,
         shadowOffset: { height: 4, width: 0 },
@@ -124,10 +130,11 @@ const styles = StyleSheet.create({
         height: "100%",
     },
     item: {
-        paddingHorizontal: 10,
-        paddingVertical: 10,
-        borderBottomWidth: 1,
+        paddingHorizontal: 2,
+        paddingLeft: 15,
+        paddingVertical: 6,
     },
+    list: {},
 });
 
 export default Dropdown;
