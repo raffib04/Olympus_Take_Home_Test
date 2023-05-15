@@ -1,6 +1,23 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import Dropdown from "./DropDown";
+
 const UserSet = (props) => {
+    const [selectedTag, setSelectedTag] = useState(null);
+    const data = [
+        { label: "Warmup", value: "tag1" },
+        { label: "Working Set", value: "tag2" },
+        { label: "Drop Set", value: "tag3" },
+        { label: "Burnout", value: "tag4" },
+        { label: "Max Attempt", value: "tag5" },
+        { label: "Assisted", value: "tag6" },
+        { label: "Negatives", value: "tag7" },
+    ];
+
+    const handleTagSelect = (item) => {
+        setSelectedTag(item);
+    };
+
     return (
         <View style={styles.item}>
             <View style={styles.row}>
@@ -18,7 +35,13 @@ const UserSet = (props) => {
                     <TextInput style={styles.weightRPE}>{props.text}</TextInput>
                 </View>
             </View>
-            <View style={styles.tag}>{/* dropdown menu code here */}</View>
+            <View style={styles.tag}>
+                <Dropdown
+                    label={"Tag"}
+                    data={data}
+                    onSelect={handleTagSelect}
+                />
+            </View>
         </View>
     );
 };
@@ -71,7 +94,9 @@ const styles = StyleSheet.create({
         width: 35,
         height: 40,
     },
-    tag: {},
+    tag: {
+        width: "40%",
+    },
 });
 
 export default UserSet;
