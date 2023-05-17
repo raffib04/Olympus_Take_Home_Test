@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
     KeyboardAvoidingView,
     StyleSheet,
@@ -6,13 +7,13 @@ import {
     TextInput,
     TouchableOpacity,
 } from "react-native";
-import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { auth } from "../firebase";
 
 const LoginScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loginError, setLoginError] = useState(null); // New state for login error
 
     const navigation = useNavigation();
     const route = useRoute();
@@ -43,7 +44,17 @@ const LoginScreen = () => {
 
                 navigation.navigate("Home");
             })
-            .catch((error) => alert(error.message));
+            .catch((error) => {
+                if (error.code === "auth/user-not-found") {
+                    setLoginError("User Not Found"); // Set custom error message for user not found
+                } else if (error.code === "auth/wrong-password") {
+                    setLoginError("Incorrect Password"); // Use the original error message for other errors
+                    //if the error code is related to too many attempts
+                } else if (error.code === "auth/too-many-requests") {
+                    setLoginError("Too many attempts, please try again later");
+                    console.log(error);
+                }
+            });
     };
 
     return (
@@ -64,12 +75,19 @@ const LoginScreen = () => {
                 <TextInput
                     placeholder='Password'
                     value={password}
-                    onChangeText={(text) => setPassword(text)}
+                    onChangeText={(text) => {
+                        setPassword(text);
+                        setLoginError(null);
+                    }}
                     style={styles.input}
                     placeholderTextColor='#E6C466'
                     color='#E6C466'
                     secureTextEntry
                 />
+
+                <View style={styles.errorContainer}>
+                    <Text style={styles.errorText}>{loginError}</Text>
+                </View>
 
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
@@ -124,12 +142,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: "center",
     },
-    buttonOutline: {
-        backgroundColor: "white",
-        marginTop: 10,
-        borderColor: "#0782F9",
-        borderWidth: 0,
-    },
     buttonText: {
         color: "#E6C466",
         fontSize: 25,
@@ -142,5 +154,15 @@ const styles = StyleSheet.create({
         color: "#E6C466",
         fontSize: 50,
         fontWeight: "600",
+    },
+    errorContainer: {
+        height: 30,
+    },
+    errorText: {
+        color: "red",
+        fontSize: 16,
+        fontWeight: "bold",
+        marginTop: 10,
+        alignSelf: "center",
     },
 });

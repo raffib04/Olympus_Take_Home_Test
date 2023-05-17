@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     dropdown: {
         position: "absolute",
         backgroundColor: "#232329",
-        width: "28%",
+        width: "28.5%",
         shadowColor: "#000000",
         shadowRadius: 4,
         shadowOffset: { height: 4, width: -4 },

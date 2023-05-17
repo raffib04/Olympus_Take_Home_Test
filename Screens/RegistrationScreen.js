@@ -111,7 +111,7 @@ const RegistrationScreen = () => {
                     secureTextEntry
                 />
                 <TextInput
-                    placeholder='Password Confirmation'
+                    placeholder='Confirm Password'
                     value={passwordConfirm}
                     onChangeText={(text) => setPasswordConfirm(text)}
                     style={styles.input}
@@ -195,11 +195,13 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: "#E6C466",
+        fontWeight: "bold",
     },
     errorText: {
         color: "red",
         fontSize: 15,
         marginTop: 10,
+        fontWeight: "bold",
         alignContent: "center",
         justifyContent: "center",
         alignSelf: "center",
