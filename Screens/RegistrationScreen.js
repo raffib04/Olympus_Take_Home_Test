@@ -56,12 +56,11 @@ const RegistrationScreen = () => {
                 email,
                 password
             );
-
             // Update user profile with name
             await updateProfile(user, {
                 displayName: name,
             });
-
+            navigation.navigate("Home");
             console.log(
                 "User registered successfully:",
                 user.displayName,

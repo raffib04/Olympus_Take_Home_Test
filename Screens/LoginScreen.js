@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { auth } from "../firebase";
 
 const LoginScreen = () => {
@@ -15,14 +15,19 @@ const LoginScreen = () => {
     const [password, setPassword] = useState("");
 
     const navigation = useNavigation();
+    const route = useRoute();
 
     useEffect(() => {
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                navigation.navigate("Home");
-            }
-        });
-    }, []);
+        if (route.name === "Home") {
+            const unsubscribe = auth.onAuthStateChanged((user) => {
+                if (user) {
+                    navigation.navigate("Home");
+                }
+            });
+
+            return unsubscribe; // Unsubscribe the listener when leaving the home page
+        }
+    }, [navigation, route]);
 
     const redirectToRegistration = () => {
         navigation.navigate("Registration");

@@ -55,7 +55,7 @@ const HomeScreen = () => {
             <Text style={[styles.exerciseHeader, { left: "65%" }]}>TAG</Text>
 
             <Text style={styles.greetingText}>
-                Hi, {auth.currentUser?.displayName}
+                Hi, {auth.currentUser.displayName}
             </Text>
             <TextInput
                 placeholder='Exercise'
